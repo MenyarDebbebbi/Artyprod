@@ -1,0 +1,76 @@
+{% extends "magasin/base.html" %}
+{% block content %}
+<style>form {
+    margin: 20px;
+    padding: 20px;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+  }
+  
+  table {
+    margin-bottom: 10px;
+  }
+  
+  td {
+    padding: 5px;
+  }
+  
+  button[type="submit"] {
+    padding: 10px 20px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #45a049;
+  }
+  
+  .alert-danger {
+    color: #721c24;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    padding: 5px;
+    margin-top: 5px;
+    border-radius: 4px;
+  }
+  
+  .small {
+    font-size: 12px;
+    margin-top: 10px;
+  }
+  
+  .small a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .small a:hover {
+    text-decoration: underline;
+  }
+  </style>
+ <h2>S'inscrire</h2> 
+ <form method="post">
+ {% csrf_token %}
+ <table>
+ {% for field in form %}
+ <tr>
+ <td>{{ field.label_tag }}</td>
+ <td>{{ field }}</td>
+ </tr>
+ {% for error in field.errors %}
+ <tr><td></td><td class="alert alert-danger">{{ error }}</td></tr>
+ {% endfor %}
+ {% endfor %}
+ </table>
+ <button type="submit">s'inscrire</button> 
+ </form>
+ <div>
+ <small>
+ Déjà inscrit.e?
+ <a href="{% url 'login' %}">Se connecter</a>
+ </small>
+ </div>
+{% endblock %}

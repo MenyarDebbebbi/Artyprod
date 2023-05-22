@@ -1,0 +1,29 @@
+{% extends 'magasin/base.html' %}
+{% block title %} Catalogue de projects{% endblock title %}
+{% block content %}
+
+<!-- body -->
+<div class="container-fluid mt-3">
+<div class="row">
+<!-- all products -->
+<div id='products' class="col-lg-9 mx-auto">
+<div class="row mx-auto">
+<!-- Products est une clé du dictionnaire context rendu par la vue ‘index’ -->
+
+    {% for project in project %}
+    <div class="card" style="width: 18rem;margin:20px">
+        <img class="card-img-top" src="{{product.img.url}}" style="height: 200px;" alt="Card image cap" >
+        <div class="card-body">
+          <h5 class="card-title">{{projects.libelle}}</h5>
+          <p class="card-text">{{project.description}} </p>
+          <!--<a href="#" class="btn btn-primary">Go somewhere</a>-->
+        </div>
+      </div>
+    {% endfor %}
+
+
+</div>
+</div>
+</div>
+</div>
+{% endblock %}

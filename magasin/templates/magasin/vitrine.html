@@ -1,0 +1,71 @@
+{% extends 'magasin/base.html' %}
+{% load static %}
+{% block content %}
+<style>
+    /* Centrage de la table */
+table {
+  margin: 0 auto;
+}
+body{  background-image: url('/media/tt.png');
+background-size: cover;
+  background-position: center;
+
+}
+/* Style de l'image */
+img {
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Style de la légende */
+figcaption {
+  text-align: center;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+/* Style des paragraphes */
+p {
+  margin-top: 5px;
+}
+
+/* Style des cellules de la table */
+td {
+  padding: 10px;
+  border: 1px solid #fffcfc;
+}
+
+/* Style des lignes impaires de la table */
+tr:nth-child(odd) {
+  background-color: #dfdddd;
+}
+
+/* Style des lignes au survol de la souris */
+tr:hover {
+  background-color: #c5c0c0;
+}
+
+</style>
+<div class="col-12">
+    <table>
+      {% for article in list %}
+        {% if forloop.counter0|divisibleby:4 %}
+          <tr>
+        {% endif %}
+        <td>
+          <img src="/media/{{ article.img }}" class="rounded float-start" height="200px" width="200px" alt="">
+          <figcaption class="figure-caption">
+            <p>{{ article.title }}</p>
+          </figcaption>
+          <p>{{ article.title }}</p>
+          <p>{{ article.content }}</p>
+        </td>
+        {% if forloop.counter|divisibleby:4 or forloop.last %}
+          </tr>
+        {% endif %}
+      {% endfor %}
+    </table>
+  </div>
+  
+
+{% endblock %}

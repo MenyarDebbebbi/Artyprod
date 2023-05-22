@@ -1,0 +1,90 @@
+{% extends 'magasin/base.html' %}
+{% block content %} 
+     <style>
+
+
+h2 {
+  font-size: 24px;
+}
+
+
+img {
+  width: 100px; /* Ajustez la taille de l'image selon vos besoins */
+  height: 100px;
+  object-fit: cover; /* Pour ajuster l'image dans les dimensions spécifiées */
+}
+#container {
+  display: -webkit-box;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 700px;
+  margin: 10 auto;
+}
+
+td {
+  width: calc(30% - 20px);
+  background-color: #f7eded;
+  border-radius: 30px;
+  margin-bottom: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  padding: 70px;
+}
+
+
+@keyframes containerAnimation {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+#container {
+  animation: containerAnimation 1s ease-in-out;
+}
+@keyframes containerAnimation {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(20px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+#container {
+  animation: containerAnimation 2s ease-in-out infinite;
+}
+
+
+     </style>
+ <div class="col-md-12 text-center">
+ <h2>Les projects</h2>
+ </div> 
+
+      <div id="container">
+        <table>
+          {% for article in list %}
+            {% if forloop.counter0|divisibleby:5 %}
+              <tr>
+            {% endif %}
+            <td>
+              <p>{{ article.name }}</p>
+      <p>{{ article.description }}</p>
+      <p> {{article.description}}</p>
+      <p>{{article.assigned_team}}</p>
+            </td>
+            {% if forloop.counter|divisibleby:5 or forloop.last %}
+              </tr>
+            {% endif %}
+          {% endfor %}
+        </table>
+        
+      </div>
+
+{% endblock %}

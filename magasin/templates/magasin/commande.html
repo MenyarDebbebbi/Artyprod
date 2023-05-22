@@ -1,0 +1,14 @@
+{% extends 'magasin/base.html' %}
+{% block content %} 
+ <div class="col-md-12 text-center">
+ <h2>Les Projecs</h2>
+ </div> 
+ <table border="2">
+    {% for article in list %}
+    <tr>
+        <td>{{article.dateCde}} </td>
+        <td>{{article.totalCde}} </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

@@ -1,0 +1,96 @@
+{% extends 'magasin/base.html' %}
+{% block content %} 
+<style>/* Couleurs */
+    h2 {
+      color: #07070e; /* Rouge */
+      margin-bottom: 20px;
+    }
+    
+    #conteneur {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: rgba(243, 237, 237, 0.8);
+  box-shadow: 0 0 10px rgba(32, 32, 32, 0.1);
+}
+body{  background-image: url('/media/im.jfif');}
+#container {
+  display: -webkit-box;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 700px;
+  margin: 10 auto;
+}
+
+td {
+  width: calc(30% - 20px);
+  background-color: #f7eded;
+  border-radius: 30px;
+  margin-bottom: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  padding: 70px;
+}
+
+
+@keyframes containerAnimation {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+#container {
+  animation: containerAnimation 1s ease-in-out;
+}
+@keyframes containerAnimation {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(20px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+#container {
+  animation: containerAnimation 2s ease-in-out infinite;
+}
+
+</style>
+
+ 
+<body>
+
+<div id="conteneur">
+ <h2>Les Services</h2>
+ </div> 
+ <div id="container">
+  <table>
+    {% for article in list %}
+      {% if forloop.counter0|divisibleby:4 %}
+        <tr>
+      {% endif %}
+      <td>
+        <p>{{ article.type }}</p>
+        </figcaption>
+        <p>{{ article.name }}</p>
+        <p>{{ article.description }}</p>
+        <p>{{article.project}}</p>
+  
+      </td>
+      {% if forloop.counter|divisibleby:4 or forloop.last %}
+        </tr>
+      {% endif %}
+    {% endfor %}
+  </table>
+  
+</div>
+
+</body>
+{% endblock %}

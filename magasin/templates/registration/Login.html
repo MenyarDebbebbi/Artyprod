@@ -1,0 +1,98 @@
+{% extends "magasin/base.html" %}
+{% block content %}
+<style>
+  .col-md-12 {
+  margin: 10px;
+  padding: 10px;
+  background-color: #c7c2c2;
+  border-radius: 5px;
+}
+
+h2 {
+  margin-bottom: 20px;
+}
+
+form {
+  margin-bottom: 30px;
+}
+
+table {
+  margin-bottom: 10px;
+}
+
+td {
+  padding: 5px;
+}
+
+button[type="submit"] {
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: rgb(245, 237, 237);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+.alert-danger {
+  color: #721c24;
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  padding: 5px;
+  margin-top: 5px;
+  border-radius: 4px;
+}
+
+.small {
+  font-size: 12px;
+  margin-top: 10px;
+}
+
+.small a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.small a:hover {
+  text-decoration: underline;
+}
+
+    
+</style>
+<div class="col-md-12">
+<h2>Se connecter </h2>
+<form method="post">
+{% csrf_token %}
+{% if form.non_field_errors %}
+{% for error in form.non_field_errors %}
+<p class="alert alert-danger">{{ error }}</p>
+{% endfor %}
+{% endif %}
+<table>
+{% for field in form %}
+<tr>
+<td>{{ field.label_tag }}</td>
+<td>{{ field }}</td>
+</tr>
+{% endfor %}
+</table>
+<button type="submit">se connecter</button>
+</form>
+<div></div>
+<small>
+Pas encore inscrit.e?
+<a href="{% url 'register' %}">
+S'inscrire
+</a>
+<br>
+Mot de passe oublié ?
+<a href="{% url 'password_reset' %}">
+Renouveler mon mot de passe
+</a>
+</small>
+</div>
+
+{% endblock %}
